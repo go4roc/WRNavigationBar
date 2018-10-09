@@ -268,6 +268,11 @@
     return 44 + CGRectGetHeight([UIApplication sharedApplication].statusBarFrame);
 }
 + (BOOL)isIphoneX {
+	if (@available(iOS 11.0, *)) {
+		return !UIEdgeInsetsEqualToEdgeInsets([[UIApplication sharedApplication] keyWindow].safeAreaInsets, UIEdgeInsetsZero);
+	} else {
+		return NO;
+	}
     struct utsname systemInfo;
     uname(&systemInfo);
     NSString *platform = [NSString stringWithCString:systemInfo.machine encoding:NSASCIIStringEncoding];
